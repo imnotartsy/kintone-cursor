@@ -1,3 +1,28 @@
+// * Standard Get Records: App, Query ?= Cursor query
+
+// export function getRecords({ app, subDomain, token, query=null } = {}) {
+//     return new Promise((resolve, reject) => {
+//         const PARAMS = new URLSearchParams({ app })
+//         if (query) PARAMS.set("query", query)
+//         const URL = createKintoneUrl(subDomain, "/k/v1/records")
+
+//         fetch(`${URL}?${PARAMS}`, {
+//             method: "GET",
+//             headers: {
+//                 "X-Requested-With": "XMLHttpRequest",
+//                 "X-Cybozu-API-Token": token
+//             }
+            
+//         }).then(async response => {
+//             if (response.ok) resolve(await response.json())
+//             else resolve(response)
+//         }).catch(err => {
+//             console.log(err)
+//             reject(err)
+//         })
+//     })
+// }
+
 
 /**
  * Represents a cursor for querying records in a Kintone app.
@@ -202,17 +227,17 @@ class Cursor {
         console.log("Response from addCursor")
         console.log(response)
 
-        console.log("Response from allRecords")
-        let allRecords = await cursor.getAllRecords(response.id)
-        console.log(allRecords)
+        // console.log("Response from allRecords")
+        // let allRecords = await cursor.getAllRecords(response.id)
+        // console.log(allRecords)
 
-        // console.log("Response from getCursor")
-        // console.log(await cursor.getCursor(response.id))
+        console.log("Response from getCursor")
+        console.log(await cursor.getCursor(response.id))
 
         // // ! Delete only works if you don't get the Cursor
         // console.log("Response from deleteCursor")
         // console.log(await cursor.deleteCursor(response.id))
         // // * Should return {} if deleted
-        // // currently getting {}
+        // // currently getting 404 error
     })
 })()
